@@ -189,7 +189,7 @@ class ListRelatedView(APIView):
                         '-sold'
                     ).filter(category__in=filtered_categories)
                 
-            #Excluir producto que estamos viendo
+            #Exclude product we are viewing
             related_products = related_products.exclude(id=product_id)
             related_products = ProductSerializer(related_products, many=True)
 
@@ -233,7 +233,7 @@ class ListBySearchView(APIView):
 
         order = data['order']
 
-        ## Si categoryID es = 0, filtrar todas las categorias
+        ## If categoryID is = 0, filter all categories
         if category_id == 0:
             product_results = Product.objects.all()
         elif not Category.objects.filter(id=category_id).exists():
