@@ -358,7 +358,7 @@ const Search = ({
                           <h3 className="-mx-2 -my-3 flow-root">
                             <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
                               <span className="font-sofiapro-regular text-gray-900">
-                                Mas Filtros
+                                More Filters
                               </span>
                               <span className="ml-6 flex items-center">
                                 {open ? (
@@ -390,10 +390,10 @@ const Search = ({
                                     onChange={(e) => onChange(e)}
                                     value={sortBy}
                                   >
-                                    <option value="date_created">Fecha</option>
-                                    <option value="price">Precio</option>
+                                    <option value="date_created">Date</option>
+                                    <option value="price">Price</option>
                                     <option value="sold">Sold</option>
-                                    <option value="title">Nombre</option>
+                                    <option value="title">Name</option>
                                   </select>
                                 </div>
                                 <div className="form-group">
@@ -436,7 +436,7 @@ const Search = ({
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
               <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
-                Productos (
+                Products (
                 {searched_products &&
                   searched_products !== null &&
                   searched_products !== undefined &&
@@ -608,7 +608,7 @@ const Search = ({
                         <h3 className="-mx-2 -my-3 flow-root">
                           <Disclosure.Button className="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500">
                             <span className="font-sofiapro-regular text-gray-900">
-                              Mas Filtros
+                              More Filters
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
@@ -640,10 +640,10 @@ const Search = ({
                                   onChange={(e) => onChange(e)}
                                   value={sortBy}
                                 >
-                                  <option value="date_created">Fecha</option>
-                                  <option value="price">Precio</option>
+                                  <option value="date_created">Date</option>
+                                  <option value="price">Price</option>
                                   <option value="sold">Sold</option>
-                                  <option value="title">Nombre</option>
+                                  <option value="title">Name</option>
                                 </select>
                               </div>
                               <div className="form-group">

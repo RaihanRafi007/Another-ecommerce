@@ -385,10 +385,10 @@ const Shop = ({
                                     onChange={(e) => onChange(e)}
                                     value={sortBy}
                                   >
-                                    <option value="date_created">Fecha</option>
-                                    <option value="price">Precio</option>
+                                    <option value="date_created">Date</option>
+                                    <option value="price">Price</option>
                                     <option value="sold">Sold</option>
-                                    <option value="title">Nombre</option>
+                                    <option value="title">Name</option>
                                   </select>
                                 </div>
                                 <div className="form-group">
@@ -630,10 +630,10 @@ const Shop = ({
                                   onChange={(e) => onChange(e)}
                                   value={sortBy}
                                 >
-                                  <option value="date_created">Fecha</option>
-                                  <option value="price">Precio</option>
+                                  <option value="date_created">Date</option>
+                                  <option value="price">Price</option>
                                   <option value="sold">Sold</option>
-                                  <option value="title">Nombre</option>
+                                  <option value="title">Name</option>
                                 </select>
                               </div>
                               <div className="form-group">
