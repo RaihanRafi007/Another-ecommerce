@@ -6,7 +6,7 @@ djangorestframework==3.14.0
 djoser==2.1.0
 social-auth-app-django==4.0.0
 
-django-ckeditor==6.5.1
+django-ckeditor==6.3.2
 
 pytz==2021.3
 
