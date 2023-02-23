@@ -6,10 +6,10 @@ env = environ.Env()
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-ENVIRONMENT = env
+# ENVIRONMENT = env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+DOMAIN=os.environ.get('DOMAIN')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -21,7 +21,7 @@ DEBUG = 'RENDER' not in os.environ
 
 DOMAIN = os.environ.get('DOMAIN')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
 
 # RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # if RENDER_EXTERNAL_HOSTNAME:
@@ -66,9 +66,10 @@ CKEDITOR_UPLOAD_PATH = "/media/"
 
 
 MIDDLEWARE = [
-    # 'social_django.middleware.SocialAuthExceptionMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -101,25 +102,32 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': env.db('DATABASE_URL')
 }
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000'
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+#     'http://localhost:8000',
+#     'http://127.0.0.1:8000',
+#     'http://127.0.0.1:3000'
+# ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://127.0.0.1:8000',
-    'http://127.0.0.1:3000'
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://localhost:8000',
+#     'http://127.0.0.1:8000',
+#     'http://127.0.0.1:3000'
+# ]
 
 
 PASSWORD_HASHERS = [
@@ -185,6 +193,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 12
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
@@ -238,9 +248,9 @@ EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 
 if not DEBUG:
-    ALLOWED_HOSTS
-    CORS_ORIGIN_WHITELIST
-    CSRF_TRUSTED_ORIGINS
+    ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEPLOY')
+    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
+    CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
 
 
     DATABASES = {
