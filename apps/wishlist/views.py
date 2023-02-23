@@ -83,7 +83,7 @@ class AddItemView(APIView):
                     ).delete()
 
                     if not CartItem.objects.filter(cart=cart, product=product).exists():
-                        # update total items in cart
+                        # actualizar items totales ene l carrito
                         total_items = int(cart.total_items) - 1
                         Cart.objects.filter(user=user).update(
                             total_items=total_items
@@ -166,7 +166,7 @@ class RemoveItemView(APIView):
             ).delete()
 
             if not WishListItem.objects.filter(wishlist=wishlist, product=product).exists():
-                # Update the total number of items in the wishlist
+                # Actualiizar el total de items en el wishlist
                 total_items = int(wishlist.total_items) - 1
                 WishList.objects.filter(user=user).update(
                     total_items=total_items

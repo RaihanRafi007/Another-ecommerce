@@ -38,9 +38,11 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-PROJECT_APPS=['apps.user']
-
-ECOMMERCE_APPS=['apps.category', 'apps.product', 'apps.cart', 'apps.shipping', 'apps.orders', 'apps.payment', 'apps.coupons', 'apps.user_profile','apps.wishlist', 'apps.reviews']
+PROJECT_APPS=['apps.user','apps.user_profile']
+ECOMMERCE_APPS=['apps.category','apps.product',
+'apps.cart', 'apps.shipping', 'apps.orders', 'apps.payment', 'apps.coupons', 'apps.wishlist',
+'apps.reviews'
+]
 
 THIRD_PARTY_APPS=[
     'corsheaders',
@@ -69,7 +71,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
