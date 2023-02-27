@@ -1,4 +1,4 @@
-django==3.2.16
+thdjango==3.2.16
 
 django-cors-headers==3.13.0
 django-environ==0.4.5
@@ -14,8 +14,6 @@ Pillow==9.3.0
 mutagen==1.46.0
 
 psycopg2==2.9.5
-psycopg-binary==3.1.8 
-dj-database-url 1.2.0 
 
 argon2-cffi==21.3.0
 django-environ==0.4.5
