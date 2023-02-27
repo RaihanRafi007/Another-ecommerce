@@ -15,7 +15,7 @@ DOMAIN=os.environ.get('DOMAIN')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-
+#django-insecure-%90c*12ja#y3sr&37&er-gg9jpw2garm@3!zcgys^1$c&rwa0b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
