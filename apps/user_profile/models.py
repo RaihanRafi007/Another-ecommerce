@@ -15,4 +15,4 @@ class UserProfile(models.Model):
         max_length=255, choices=Countries.choices, default=Countries.Canada)
 
     def __str__(self):
-        return self.user
+        return self.user.__str__() 

@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import environ
 from datetime import timedelta
+import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
@@ -111,11 +112,18 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': env.db('DATABASE_URL')
-}
 
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {
+    'default': dj_database_url.config(
+        default = env.db('DATABASE_URL'),
+        conn_max_age=600)
+    }
+
+# DATABASES = {
+#     'default': env.db('DATABASE_URL')
+# }
+
+# DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # CORS_ORIGIN_WHITELIST = [
 #     'http://localhost:3000',
@@ -257,9 +265,15 @@ if not DEBUG:
 
 
     DATABASES = {
-        "default": env.db("DATABASE_URL"),
+    'default': dj_database_url.config(
+        default = env.db('DATABASE_URL'),
+        conn_max_age=600)
     }
-    DATABASES["default"]["ATOMIC_REQUESTS"] = True
+    
+    # DATABASES = {
+    #     "default": env.db("DATABASE_URL"),
+    # }
+    # DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
     # # django-ckeditor will not work with S3 through django-storages without this line in settings.py
     # AWS_QUERYSTRING_AUTH = False
