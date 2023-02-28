@@ -6,27 +6,31 @@ import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# ENVIRONMENT = env
+ENVIRONMENT = env
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DOMAIN=os.environ.get('DOMAIN')
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+
+DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-#django-insecure-%90c*12ja#y3sr&37&er-gg9jpw2garm@3!zcgys^1$c&rwa0b
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
 
 DOMAIN = os.environ.get('DOMAIN')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
+ALLOWED_HOSTS = [
+    ".ecombd.onrender.com"
+    "ecombd.onrender.com"
+    "www.ecombd.onrender.com"
+    "127.0.0.1",
+    "localhost",
+    ]
 
-# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# if RENDER_EXTERNAL_HOSTNAME:
-#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
                          
 # Application definition
 
@@ -105,39 +109,32 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         default = env.db('DATABASE_URL'),
-#         conn_max_age=600)
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
-
-# DATABASES = {
-#     'default': env.db('DATABASE_URL')
 # }
 
-# DATABASES["default"]["ATOMIC_REQUESTS"] = True
+DATABASES = {
+    'default': env.db('DATABASE_URL')
+}
 
-# CORS_ORIGIN_WHITELIST = [
-#     'http://localhost:3000',
-#     'http://localhost:8000',
-#     'http://127.0.0.1:8000',
-#     'http://127.0.0.1:3000'
-# ]
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
-# CSRF_TRUSTED_ORIGINS = [
-#     'http://localhost:3000',
-#     'http://localhost:8000',
-#     'http://127.0.0.1:8000',
-#     'http://127.0.0.1:3000'
-# ]
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000'
+]
 
 
 PASSWORD_HASHERS = [
@@ -203,7 +200,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 12
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
@@ -258,18 +255,13 @@ EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 
 if not DEBUG:
-    ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEPLOY')
-    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
-    CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+    DEFAULT_FROM_EMAIL = 'Satisfya software <rrafi0570@gmail.com>'
+    EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = env('EMAIL_HOST')
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+    EMAIL_PORT = env('EMAIL_PORT')
+    EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 
     # DATABASES = {
     # 'default': dj_database_url.config(
