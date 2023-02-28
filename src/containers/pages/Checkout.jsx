@@ -123,17 +123,17 @@ const Checkout = ({
   useEffect(() => {
     window.scrollTo(0, 0);
     get_shipping_options();
-  }, []);
+  }, [get_shipping_options]);
 
   useEffect(() => {
     get_client_token();
-  }, [user]);
+  }, [user,get_client_token]);
 
   useEffect(() => {
     if (coupon && coupon !== null && coupon !== undefined)
       get_payment_total(shipping_id, coupon.name);
     else get_payment_total(shipping_id, "default");
-  }, [shipping_id, coupon]);
+  }, [shipping_id, coupon,get_payment_total]);
 
   const [render, setRender] = useState(false);
 
